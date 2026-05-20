@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel narrow">
+    <h2>Edit Product</h2>
+    <form class="product-form stacked" action="{{ url_for('edit', product_id=product.id) }}" method="post">
+        <label>
+            Product Name
+            <input type="text" name="product_name" value="{{ product.product_name }}" required>
+        </label>
+
+        <label>
+            Amazon Product URL
+            <input type="url" name="product_url" value="{{ product.product_url }}" required>
+        </label>
+
+        <label>
+            Target Price
+            <input type="number" step="0.01" min="1" name="target_price" value="{{ product.target_price }}" required>
+        </label>
+
+        <label>
+            Notify Email
+            <input type="email" name="notify_email" value="{{ product.notify_email or '' }}">
+        </label>
+
+        <div class="form-actions">
+            <button type="submit">Save Changes</button>
+            <a class="button-link secondary" href="{{ url_for('index') }}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
